@@ -9,11 +9,12 @@ class Sprite{
         this.color = color
         this.direccion = direccion
         this.altura = 200
+        this.anchura = 100
     }
 
     pruebaMostrarPersonaje(){
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.posicion.x, this.posicion.y, 100, this.altura);
+        ctx.fillRect(this.posicion.x, this.posicion.y, this.anchura, this.altura);
     }
 
     mostrarSprite(){
@@ -24,14 +25,24 @@ class Sprite{
         this.pruebaMostrarPersonaje();
         
         this.posicion.y += this.direccion.y;
+        this.posicion.x += this.direccion.x;
+
 
         // si la posicion del jugador1 es mayor o igual a la altura del canvas - 50 se queda a 50 pixeles del borde inferior, sino, se aplica la gravedad a la
         // direccion "y", haciendo que los jugadores caigan hasta que se cumple la condicion antes mencionada
         if(this.posicion.y + this.altura >= canvas.height -50){
             this.posicion.y = canvas.height - (this.altura + 50); 
             this.direccion.y = 0;
+            // this.direccion.x = 0;
         } else {
             this.direccion.y += gravedad;
+        }
+
+        //hacer que los personajes no se salgan de los lados del canvas
+        if(this.posicion.x <= 0){
+            this.posicion.x = 0;
+        } else if(this.posicion.x + this.anchura >= canvas.width){
+            this.posicion.x = canvas.width - this.anchura;
         }
     }
 }

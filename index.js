@@ -45,5 +45,62 @@ function movimiento(){
 
 movimiento();
 
+window.addEventListener('keydown', (event) => {
+    console.log(event.key);
+    switch(event.key){
+        case "w":
+            jugador1.direccion.y = -6;
+            break;
+        case "s":
+            jugador1.direccion.y = 6;
+            break;
+        case "ArrowUp":
+            jugador2.direccion.y = -6;
+            break;
+        case "ArrowDown":
+            jugador2.direccion.y = 6;
+            break;
+        case "a":
+            jugador1.direccion.x = -4;
+            break;
+        case "d":
+            jugador1.direccion.x = 4;
+            break;
+        case "ArrowLeft":
+            jugador2.direccion.x = -4;
+            break;
+        case "ArrowRight":
+            jugador2.direccion.x = 4;
+            break;
+    }
+});
 
-
+window.addEventListener('keyup', (event) => {
+    console.log(event.key);
+    switch(event.key){
+        case "w":
+            jugador1.direccion.y = 0;
+            break;
+        case "s":
+            jugador1.direccion.y = 0;
+            break;
+        case "ArrowUp":
+            jugador2.direccion.y = 0;
+            break;
+        case "ArrowDown":
+            jugador2.direccion.y = 0;
+            break;
+        case "a":
+            jugador1.direccion.x = 0;
+            break;
+        case "d":
+            jugador1.direccion.x = 0;
+            break;
+        case "ArrowLeft":
+            jugador2.direccion.x = 0;
+            break;
+        case "ArrowRight":
+            jugador2.direccion.x = 0;
+            break;
+    }
+});
