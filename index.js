@@ -2,7 +2,6 @@
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 // Creamos una constante para el jugador1 utilizando la clase Sprite, pasandole el parametro de posicion como un objeto con con las coordenadas x,y en pixeles
 const jugador1 = new Sprite({
@@ -17,7 +16,7 @@ const jugador1 = new Sprite({
     }
 });
 
-jugador1.pruebaMostrarPersonaje();
+// jugador1.pruebaMostrarPersonaje();
 
 const jugador2 = new Sprite({
     posicion: {
@@ -31,12 +30,20 @@ const jugador2 = new Sprite({
     }
 });
 
-jugador2.pruebaMostrarPersonaje();
+// jugador2.pruebaMostrarPersonaje();
 
 function movimiento(){
     // sirve para hacer que el navegador redibuje el contenido 
     window.requestAnimationFrame(movimiento);
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    jugador1.actualizar();
+    jugador2.actualizar();
+    
 }
 
 movimiento();
+
+
+
