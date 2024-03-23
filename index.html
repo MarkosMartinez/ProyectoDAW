@@ -6,7 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas id="canvas" width="1024" height="576"></canvas>
+    <style>
+        @media (max-width: 500px) {
+            #canvas-container {
+                height: 100vh;
+            }
+            #canvas {
+                transform: rotate(90deg);
+                width: 100vh;
+                height: 100vw;
+            }
+        }
+    </style>
+    <div id="canvas-container" style="display: flex; align-items: center; justify-content: center; height: 90vh;">
+        <canvas id="canvas" width="1024" height="576"></canvas>
+    </div>
     <script src="sprite.js"></script>
     <script src="index.js"></script>
 </body>
