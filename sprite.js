@@ -2,9 +2,10 @@
 class Sprite{
 
     // Un constructor indica que parametros va a tener un objeto de la clase Sprite
-    constructor(posicion, color){
+    constructor({posicion, color, direccion}){
         this.posicion = posicion
         this.color = color
+        this.direccion = direccion
     }
 
     pruebaMostrarPersonaje(){
