@@ -23,10 +23,11 @@ class Sprite{
     actualizar(){
         this.pruebaMostrarPersonaje();
         
-        // hacemos que si los personajes estan a mas altura que la altura del canvas menos 50 caigan hacia abajo pero sin pasarse de cierto limite
         this.posicion.y += this.direccion.y;
 
-        if(this.posicion.y + this.altura > canvas.height -50){
+        // si la posicion del jugador1 es mayor o igual a la altura del canvas - 50 se queda a 50 pixeles del borde inferior, sino, se aplica la gravedad a la
+        // direccion "y", haciendo que los jugadores caigan hasta que se cumple la condicion antes mencionada
+        if(this.posicion.y + this.altura >= canvas.height -50){
             this.posicion.y = canvas.height - (this.altura + 50); 
             this.direccion.y = 0;
         } else {

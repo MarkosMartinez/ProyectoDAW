@@ -33,7 +33,7 @@ const jugador2 = new Sprite({
 // jugador2.pruebaMostrarPersonaje();
 
 function movimiento(){
-    // sirve para hacer que el navegador redibuje el contenido 
+    // sirve para hacer que el navegador redibuje el contenido continuamente al llamar a esta misma funcion
     window.requestAnimationFrame(movimiento);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
