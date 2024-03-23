@@ -18,3 +18,11 @@ const jugador2 = new Sprite({
 }, "red");
 
 jugador2.pruebaMostrarPersonaje();
+
+function movimiento(){
+    // sirve para hacer que el navegador redibuje el contenido 
+    window.requestAnimationFrame(movimiento);
+    console.log("se esta ejecutando de forma infinita")
+}
+
+movimiento();
