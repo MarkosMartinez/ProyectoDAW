@@ -32,6 +32,21 @@ const jugador2 = new Sprite({
 
 // jugador2.pruebaMostrarPersonaje();
 
+const teclas = {
+    a: {
+        presionada: false
+    },
+    d: {
+        presionada: false
+    },
+    flechaIzquierda: {
+        presionada: false
+    },
+    flechaDerecha: {
+        presionada: false
+    },
+}
+
 function movimiento(){
     // sirve para hacer que el navegador redibuje el contenido continuamente al llamar a esta misma funcion
     window.requestAnimationFrame(movimiento);
@@ -41,12 +56,25 @@ function movimiento(){
     jugador1.actualizar();
     jugador2.actualizar();
     
+    jugador1.direccion.x = 0;
+    if(teclas.a.presionada){
+        jugador1.direccion.x = -4;
+    } else if(teclas.d.presionada){
+        jugador1.direccion.x = 4;
+    }
+
+    jugador2.direccion.x = 0;
+    if(teclas.flechaIzquierda.presionada){
+        jugador2.direccion.x = -4;
+    } else if(teclas.flechaDerecha.presionada){
+        jugador2.direccion.x = 4;
+    }
 }
 
 movimiento();
 
 window.addEventListener('keydown', (event) => {
-    console.log(event.key);
+    // console.log(event.key);
     switch(event.key){
         case "w":
             jugador1.direccion.y = -6;
@@ -61,22 +89,22 @@ window.addEventListener('keydown', (event) => {
             jugador2.direccion.y = 6;
             break;
         case "a":
-            jugador1.direccion.x = -4;
+            teclas.a.presionada = true;
             break;
         case "d":
-            jugador1.direccion.x = 4;
+            teclas.d.presionada = true;
             break;
         case "ArrowLeft":
-            jugador2.direccion.x = -4;
+            teclas.flechaIzquierda.presionada = true;
             break;
         case "ArrowRight":
-            jugador2.direccion.x = 4;
+            teclas.flechaDerecha.presionada = true;
             break;
     }
 });
 
 window.addEventListener('keyup', (event) => {
-    console.log(event.key);
+    // console.log(event.key);
     switch(event.key){
         case "w":
             jugador1.direccion.y = 0;
@@ -91,16 +119,16 @@ window.addEventListener('keyup', (event) => {
             jugador2.direccion.y = 0;
             break;
         case "a":
-            jugador1.direccion.x = 0;
+            teclas.a.presionada = false;
             break;
         case "d":
-            jugador1.direccion.x = 0;
+            teclas.d.presionada = false;
             break;
         case "ArrowLeft":
-            jugador2.direccion.x = 0;
+            teclas.flechaIzquierda.presionada = false;
             break;
         case "ArrowRight":
-            jugador2.direccion.x = 0;
+            teclas.flechaDerecha.presionada = false;
             break;
     }
 });
