@@ -53,6 +53,15 @@ function movimiento(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Prubas colision entre personajes 
+    // if(jugador1.posicion.x + jugador1.anchura >= jugador2.posicion.x && jugador1.posicion.x <= jugador2.posicion.x + jugador2.anchura){
+    //     if(jugador1.posicion.y + jugador1.altura >= jugador2.posicion.y && jugador1.posicion.y <= jugador2.posicion.y + jugador2.altura){
+    //         jugador1.direccion.x -= 4;
+    //         jugador2.direccion.x += 4;
+    //     }
+    // }
+
     jugador1.actualizar();
     jugador2.actualizar();
     
