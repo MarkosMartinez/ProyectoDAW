@@ -66,17 +66,55 @@ function movimiento(){
     jugador2.actualizar();
     
     jugador1.direccion.x = 0;
-    if(teclas.a.presionada){
+    jugador2.direccion.x = 0;
+
+    if (teclas.a.presionada) {
         jugador1.direccion.x = -4;
-    } else if(teclas.d.presionada){
+    } else if (teclas.d.presionada) {
         jugador1.direccion.x = 4;
     }
 
-    jugador2.direccion.x = 0;
-    if(teclas.flechaIzquierda.presionada){
+    if (teclas.flechaIzquierda.presionada) {
         jugador2.direccion.x = -4;
-    } else if(teclas.flechaDerecha.presionada){
+    } else if (teclas.flechaDerecha.presionada) {
         jugador2.direccion.x = 4;
+    }
+
+    // ataques
+
+    // pruebas colision entre ataques de ambos jugadores (no funciona coreectamente)
+    // function colisionAtaque(jugadorAtacante, jugadorAtacado) {
+    //     return jugadorAtacante.posicion.x + jugadorAtacante.width >= jugadorAtacado.posicion.x &&
+    //     jugadorAtacante.posicion.x <= jugadorAtacado.posicion.x + jugadorAtacado.anchura &&
+    //     jugadorAtacante.posicion.y + jugadorAtacante.height >= jugadorAtacado.posicion.y &&
+    //     jugadorAtacante.posicion.y <= jugadorAtacado.posicion.y + jugadorAtacado.altura &&
+    //     jugadorAtacante.atacando == true;
+    // }    
+    
+    // if (colisionAtaque(jugador1.ataque, jugador2)) {
+    //     console.log("ataque jug1");
+    // }
+
+    // if (colisionAtaque(jugador2.ataque, jugador1)) {
+    //     console.log("ataque jug2");
+    // }
+
+
+    function pruebaColi(jugadorAtacante, jugadorAtacado) {
+        return jugadorAtacante.posicion.x + jugadorAtacante.width >= jugadorAtacado.posicion.x &&
+        jugadorAtacante.posicion.x <= jugadorAtacado.posicion.x + jugadorAtacado.anchura &&
+        jugadorAtacante.posicion.y + jugadorAtacante.height >= jugadorAtacado.posicion.y &&
+        jugadorAtacante.posicion.y <= jugadorAtacado.posicion.y + jugadorAtacado.altura;
+    }
+
+    if (jugador1.atacando && pruebaColi(jugador1.ataque, jugador2)) {
+        jugador1.atacando = false;
+        console.log("ataque jug1");
+    }
+
+    if (jugador2.atacando && pruebaColi(jugador2.ataque, jugador1)) {
+        jugador2.atacando = false;
+        console.log("ataque jug2");
     }
 }
 
@@ -108,6 +146,12 @@ window.addEventListener('keydown', (event) => {
             break;
         case "ArrowRight":
             teclas.flechaDerecha.presionada = true;
+            break;
+        case " ":
+            jugador1.realizarAtaque();
+            break;
+        case "Control":
+            jugador2.realizarAtaque();
             break;
     }
 });

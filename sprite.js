@@ -10,11 +10,25 @@ class Sprite{
         this.direccion = direccion
         this.altura = 200
         this.anchura = 100
+        this.ataque = {
+            posicion: {
+                x: this.posicion.x,
+                y: this.posicion.y
+            },
+            width: 200,
+            height: 75,
+        }
+        this.atacando = false;
     }
 
     pruebaMostrarPersonaje(){
         ctx.fillStyle = this.color;
         ctx.fillRect(this.posicion.x, this.posicion.y, this.anchura, this.altura);
+
+        if(this.atacando){
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(this.ataque.posicion.x, this.ataque.posicion.y, this.ataque.width, this.ataque.height)        }
+
     }
 
     mostrarSprite(){
@@ -44,5 +58,12 @@ class Sprite{
         } else if(this.posicion.x + this.anchura >= canvas.width){
             this.posicion.x = canvas.width - this.anchura;
         }
+    }
+
+    realizarAtaque(){
+        this.atacando = true;
+        setTimeout(() => {
+            this.atacando = false;
+        }, 200);
     }
 }
