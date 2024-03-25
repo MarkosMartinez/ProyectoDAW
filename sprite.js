@@ -37,6 +37,9 @@ class Sprite{
 
     actualizar(){
         this.pruebaMostrarPersonaje();
+
+        this.ataque.posicion.x = this.posicion.x;
+        this.ataque.posicion.y = this.posicion.y;
         
         this.posicion.y += this.direccion.y;
         this.posicion.x += this.direccion.x;
