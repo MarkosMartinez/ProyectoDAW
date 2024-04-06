@@ -13,6 +13,9 @@ const jugador1 = new Sprite({
     direccion: {
         x: 0,
         y: 0
+    },
+    posicionLateral:{
+        x: 0,
     }
 });
 
@@ -27,6 +30,9 @@ const jugador2 = new Sprite({
     direccion: {
         x: 0,
         y: 0
+    },
+    posicionLateral:{
+        x: 100,
     }
 });
 
@@ -45,6 +51,13 @@ const teclas = {
     flechaDerecha: {
         presionada: false
     },
+}
+
+function colisionAtaque({jugadorAtacante, jugadorAtacado}){
+    return (jugadorAtacante.ataque.posicion.x + jugadorAtacante.ataque.width >= jugadorAtacado.posicion.x &&
+        jugadorAtacante.ataque.posicion.x <= jugadorAtacado.posicion.x + jugadorAtacado.anchura &&
+        jugadorAtacante.ataque.posicion.y + jugadorAtacante.ataque.height >= jugadorAtacado.posicion.y &&
+        jugadorAtacante.ataque.posicion.y <= jugadorAtacado.posicion.y + jugadorAtacado.altura)
 }
 
 function movimiento(){
@@ -82,40 +95,15 @@ function movimiento(){
 
     // ataques
 
-    // pruebas colision entre ataques de ambos jugadores (no funciona coreectamente)
-    // function colisionAtaque(jugadorAtacante, jugadorAtacado) {
-    //     return jugadorAtacante.posicion.x + jugadorAtacante.width >= jugadorAtacado.posicion.x &&
-    //     jugadorAtacante.posicion.x <= jugadorAtacado.posicion.x + jugadorAtacado.anchura &&
-    //     jugadorAtacante.posicion.y + jugadorAtacante.height >= jugadorAtacado.posicion.y &&
-    //     jugadorAtacante.posicion.y <= jugadorAtacado.posicion.y + jugadorAtacado.altura &&
-    //     jugadorAtacante.atacando == true;
-    // }    
-    
-    // if (colisionAtaque(jugador1.ataque, jugador2)) {
-    //     console.log("ataque jug1");
-    // }
-
-    // if (colisionAtaque(jugador2.ataque, jugador1)) {
-    //     console.log("ataque jug2");
-    // }
-
-
-    function pruebaColi(jugadorAtacante, jugadorAtacado) {
-        return jugadorAtacante.posicion.x + jugadorAtacante.width >= jugadorAtacado.posicion.x &&
-        jugadorAtacante.posicion.x <= jugadorAtacado.posicion.x + jugadorAtacado.anchura &&
-        jugadorAtacante.posicion.y + jugadorAtacante.height >= jugadorAtacado.posicion.y &&
-        jugadorAtacante.posicion.y <= jugadorAtacado.posicion.y + jugadorAtacado.altura;
+    if (colisionAtaque({jugadorAtacante: jugador1, jugadorAtacado: jugador2}) && jugador1.atacando) {
+            jugador1.atacando = false;
+            console.log("ataque jug1");
     }
 
-    if (jugador1.atacando && pruebaColi(jugador1.ataque, jugador2)) {
-        jugador1.atacando = false;
-        console.log("ataque jug1");
-    }
-
-    if (jugador2.atacando && pruebaColi(jugador2.ataque, jugador1)) {
+    if (colisionAtaque({jugadorAtacante: jugador2, jugadorAtacado: jugador1}) && jugador2.atacando) {
         jugador2.atacando = false;
         console.log("ataque jug2");
-    }
+}
 }
 
 movimiento();

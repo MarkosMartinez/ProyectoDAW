@@ -4,7 +4,7 @@ const gravedad = 0.2;
 class Sprite{
 
     // Un constructor indica que parametros va a tener un objeto de la clase Sprite
-    constructor({posicion, color, direccion}){
+    constructor({posicion, color, direccion, posicionLateral}){
         this.posicion = posicion
         this.color = color
         this.direccion = direccion
@@ -15,6 +15,7 @@ class Sprite{
                 x: this.posicion.x,
                 y: this.posicion.y
             },
+            posicionLateral,
             width: 200,
             height: 75,
         }
@@ -27,7 +28,8 @@ class Sprite{
 
         if(this.atacando){
             ctx.fillStyle = "yellow";
-            ctx.fillRect(this.ataque.posicion.x, this.ataque.posicion.y, this.ataque.width, this.ataque.height)        }
+            ctx.fillRect(this.ataque.posicion.x, this.ataque.posicion.y, this.ataque.width, this.ataque.height)        
+        }
 
     }
 
@@ -38,7 +40,7 @@ class Sprite{
     actualizar(){
         this.pruebaMostrarPersonaje();
 
-        this.ataque.posicion.x = this.posicion.x;
+        this.ataque.posicion.x = this.posicion.x - this.ataque.posicionLateral.x;
         this.ataque.posicion.y = this.posicion.y;
         
         this.posicion.y += this.direccion.y;
@@ -67,6 +69,6 @@ class Sprite{
         this.atacando = true;
         setTimeout(() => {
             this.atacando = false;
-        }, 200);
+        }, 100);
     }
 }
