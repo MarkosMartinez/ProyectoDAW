@@ -138,7 +138,7 @@ window.addEventListener('keydown', (event) => {
         case " ":
             jugador1.realizarAtaque();
             break;
-        case "Control":
+        case "ç":
             jugador2.realizarAtaque();
             break;
     }

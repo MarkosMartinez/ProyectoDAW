@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <style>
-        @media (max-width: 500px) {
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 150px;
+    }
+
+    #contenedor {
+      position: relative;
+    }
+
+    #contendorVida {
+      position: absolute;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .barraVida {
+      background-color: red;
+      height: 30px;
+      width: 100%;
+      border: 1px grey solid;
+    }
+
+    #contador {
+      background-color: blue;
+      height: 60px;
+      width: 20%;
+      border: 3px white solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    /* @media (max-width: 500px) {
             #canvas-container {
                 height: 100vh;
             }
@@ -16,12 +57,29 @@
                 width: 100vh;
                 height: 100vw;
             }
-        }
-    </style>
-    <div id="canvas-container" style="display: flex; align-items: center; justify-content: center; height: 90vh;">
-        <canvas id="canvas" width="1024" height="576"></canvas>
+        } */
+  </style>
+
+  <body>
+    <div id="contenedor">
+      <div id="contendorVida">
+        <div class="barraVida"></div>
+        <div id="contador"></div>
+        <div class="barraVida"></div>
+      </div>
+      <canvas id="canvas" width="1024" height="576"></canvas>
     </div>
     <script src="sprite.js"></script>
     <script src="index.js"></script>
-</body>
+
+    <script>
+      contador.innerHTML = 60;
+      var cuentaAtras = setInterval(() => {
+        contador.innerHTML--;
+        if (contador.innerHTML == 0) {
+          clearInterval(cuentaAtras);
+        }
+      }, 1000);
+    </script>
+  </body>
 </html>
