@@ -23,7 +23,7 @@
       position: relative;
     }
 
-    #contendorVida {
+    #contenedorVidasContador {
       position: absolute;
       display: flex;
       width: 100%;
@@ -31,11 +31,25 @@
       padding: 20px;
     }
 
+    #contenedorVida {
+      position: relative;
+      height: 30px;
+      width: 100%;
+    }
+
     .barraVida {
       background-color: red;
       height: 30px;
       width: 100%;
       border: 1px grey solid;
+    }
+
+    .vidaJug {
+      position: absolute;
+      background-color: green;
+      top: 0;
+      height: 100%;
+      width: 100%;
     }
 
     #contador {
@@ -62,10 +76,18 @@
 
   <body>
     <div id="contenedor">
-      <div id="contendorVida">
-        <div class="barraVida"></div>
+      <div id="contenedorVidasContador">
+
+        <div id="contenedorVida">
+          <div class="barraVida"></div>
+          <div class="vidaJug" id="vidaJug1" style="right: 0;"></div>
+        </div>
         <div id="contador"></div>
-        <div class="barraVida"></div>
+
+        <div id="contenedorVida">
+          <div class="barraVida"></div>
+          <div class="vidaJug" id="vidaJug2"></div>
+        </div>
       </div>
       <canvas id="canvas" width="1024" height="576"></canvas>
     </div>

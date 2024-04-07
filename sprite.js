@@ -20,6 +20,7 @@ class Sprite{
             height: 75,
         }
         this.atacando = false;
+        this.vida = 100;
     }
 
     pruebaMostrarPersonaje(){

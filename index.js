@@ -53,6 +53,7 @@ const teclas = {
     },
 }
 
+// recibe el objeto de cada jugar al completo poder utilizar sus propiedades
 function colisionAtaque({jugadorAtacante, jugadorAtacado}){
     return (jugadorAtacante.ataque.posicion.x + jugadorAtacante.ataque.width >= jugadorAtacado.posicion.x &&
         jugadorAtacante.ataque.posicion.x <= jugadorAtacado.posicion.x + jugadorAtacado.anchura &&
@@ -96,12 +97,16 @@ function movimiento(){
     // ataques
 
     if (colisionAtaque({jugadorAtacante: jugador1, jugadorAtacado: jugador2}) && jugador1.atacando) {
-            jugador1.atacando = false;
-            console.log("ataque jug1");
+        jugador1.atacando = false;
+        console.log("ataque jug1");
+        jugador2.vida -= 10;
+        document.getElementById("vidaJug2").style.width = jugador2.vida + "%";
     }
 
     if (colisionAtaque({jugadorAtacante: jugador2, jugadorAtacado: jugador1}) && jugador2.atacando) {
         jugador2.atacando = false;
+        jugador1.vida -= 10;
+        document.getElementById("vidaJug1").style.width = jugador1.vida + "%";
         console.log("ataque jug2");
 }
 }
