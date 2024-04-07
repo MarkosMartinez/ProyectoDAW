@@ -46,7 +46,22 @@
 
     .vidaJug {
       position: absolute;
-      background-image: linear-gradient(to right, #ff0000, #ff4200, #ff5f00, #ff7700, #ff8c00, #f99d00, #f2ae00, #eabd00, #d5ce00, #b5df00, #86ef00, #00ff0b);      top: 0;
+      background-image: linear-gradient(
+        to right,
+        #ff0000,
+        #ff5b00,
+        #ff8800,
+        #ffae00,
+        #ffd100,
+        #f4e000,
+        #e5f000,
+        #d2ff00,
+        #b5ff00,
+        #94ff00,
+        #69ff00,
+        #00ff16
+      );
+      top: 0;
       height: 100%;
       width: 100%;
     }
@@ -76,10 +91,13 @@
   <body>
     <div id="contenedor">
       <div id="contenedorVidasContador">
-
         <div id="contenedorVida">
           <div class="fondoVida"></div>
-          <div class="vidaJug" id="vidaJug1" style="right: 0; rotate: 180deg;"></div>
+          <div
+            class="vidaJug"
+            id="vidaJug1"
+            style="right: 0; rotate: 180deg"
+          ></div>
         </div>
 
         <div id="contador"></div>
@@ -88,23 +106,17 @@
           <div class="fondoVida"></div>
           <div class="vidaJug" id="vidaJug2"></div>
         </div>
-
       </div>
+      <h1 id="empate" style="position: absolute; color: white; text-align: center; top: 25%; left: 50%; transform: translate(-50%, -50%); display: none;">Empate</h1>
       <canvas id="canvas" width="1024" height="576"></canvas>
     </div>
+
+    <h1 id="a" onclick="comenzar()">Comenzar</h1>
     <script src="sprite.js"></script>
     <script src="index.js"></script>
 
     <script>
-      var contador = 60;
-      document.getElementById("contador").innerText = contador;
-      var cuentaAtras = setInterval(function() {
-        contador--;
-        document.getElementById("contador").innerText = contador;
-        if (contador == 0) {
-          clearInterval(cuentaAtras);
-        }
-      }, 1000);
+      
     </script>
   </body>
 </html>

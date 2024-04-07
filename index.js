@@ -61,10 +61,39 @@ function colisionAtaque({jugadorAtacante, jugadorAtacado}){
         jugadorAtacante.ataque.posicion.y <= jugadorAtacado.posicion.y + jugadorAtacado.altura)
 }
 
+function comenzar(){
+    document.getElementById("empate").style.display = "none";
+    let contador = 6;
+    document.getElementById("contador").innerText = contador;
+    let cuentaAtras = setInterval(() => {
+      contador--;
+      document.getElementById("contador").innerText = contador;
+      if (contador === 0) {
+        clearInterval(cuentaAtras);
+        cancelAnimationFrame(idAnimacion);
+        document.getElementById("empate").style.display = "block";
+      }
+    }, 1000);
+movimiento();
+
+    jugador1.posicion.x = 50;
+    jugador1.posicion.y = 100;
+    jugador2.posicion.x = canvas.width - 150;
+    jugador2.posicion.y = 100;
+
+    jugador1.vida = 100;
+    jugador2.vida = 100;
+    document.getElementById("vidaJug1").style.clipPath = `inset(0% 0% 0% 0%)`;
+    document.getElementById("vidaJug2").style.clipPath = `inset(0% 0% 0% 0%)`;
+
+}
+
+idAnimacion = 0;
+
 function movimiento(){
     // sirve para hacer que el navegador redibuje el contenido continuamente al llamar a esta misma funcion
-   
-    window.requestAnimationFrame(movimiento); 
+
+    idAnimacion = window.requestAnimationFrame(movimiento); 
    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
@@ -102,18 +131,20 @@ function movimiento(){
         jugador1.atacando = false;
         console.log("ataque jug1");
         jugador2.vida -= 10;
+        // document.getElementById("vidaJug2").style.width = jugador2.vida + "%";
         document.getElementById("vidaJug2").style.clipPath = `inset(0% ${100 - jugador2.vida}% 0% 0%)`;
     }
 
     if (colisionAtaque({jugadorAtacante: jugador2, jugadorAtacado: jugador1}) && jugador2.atacando) {
         jugador2.atacando = false;
         jugador1.vida -= 10;
+        // document.getElementById("vidaJug1").style.width = jugador1.vida + "%";
         document.getElementById("vidaJug1").style.clipPath = `inset(0% ${100 - jugador1.vida}% 0% 0%)`;
         console.log("ataque jug2");
 }
 }
 
-movimiento();
+
 
 window.addEventListener('keydown', (event) => {
     // console.log(event.key);
