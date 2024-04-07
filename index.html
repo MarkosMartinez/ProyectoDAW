@@ -37,8 +37,8 @@
       width: 100%;
     }
 
-    .barraVida {
-      background-color: red;
+    .fondoVida {
+      background-color: rgba(204, 120, 120, 0);
       height: 30px;
       width: 100%;
       border: 1px grey solid;
@@ -46,8 +46,7 @@
 
     .vidaJug {
       position: absolute;
-      background-color: green;
-      top: 0;
+      background-image: linear-gradient(to right, #ff0000, #ff4200, #ff5f00, #ff7700, #ff8c00, #f99d00, #f2ae00, #eabd00, #d5ce00, #b5df00, #86ef00, #00ff0b);      top: 0;
       height: 100%;
       width: 100%;
     }
@@ -79,15 +78,17 @@
       <div id="contenedorVidasContador">
 
         <div id="contenedorVida">
-          <div class="barraVida"></div>
-          <div class="vidaJug" id="vidaJug1" style="right: 0;"></div>
+          <div class="fondoVida"></div>
+          <div class="vidaJug" id="vidaJug1" style="right: 0; rotate: 180deg;"></div>
         </div>
+
         <div id="contador"></div>
 
         <div id="contenedorVida">
-          <div class="barraVida"></div>
+          <div class="fondoVida"></div>
           <div class="vidaJug" id="vidaJug2"></div>
         </div>
+
       </div>
       <canvas id="canvas" width="1024" height="576"></canvas>
     </div>
@@ -95,10 +96,12 @@
     <script src="index.js"></script>
 
     <script>
-      contador.innerHTML = 60;
-      var cuentaAtras = setInterval(() => {
-        contador.innerHTML--;
-        if (contador.innerHTML == 0) {
+      var contador = 60;
+      document.getElementById("contador").innerText = contador;
+      var cuentaAtras = setInterval(function() {
+        contador--;
+        document.getElementById("contador").innerText = contador;
+        if (contador == 0) {
           clearInterval(cuentaAtras);
         }
       }, 1000);

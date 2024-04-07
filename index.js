@@ -63,7 +63,9 @@ function colisionAtaque({jugadorAtacante, jugadorAtacado}){
 
 function movimiento(){
     // sirve para hacer que el navegador redibuje el contenido continuamente al llamar a esta misma funcion
-    window.requestAnimationFrame(movimiento);
+   
+    window.requestAnimationFrame(movimiento); 
+   
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -100,13 +102,13 @@ function movimiento(){
         jugador1.atacando = false;
         console.log("ataque jug1");
         jugador2.vida -= 10;
-        document.getElementById("vidaJug2").style.width = jugador2.vida + "%";
+        document.getElementById("vidaJug2").style.clipPath = `inset(0% ${100 - jugador2.vida}% 0% 0%)`;
     }
 
     if (colisionAtaque({jugadorAtacante: jugador2, jugadorAtacado: jugador1}) && jugador2.atacando) {
         jugador2.atacando = false;
         jugador1.vida -= 10;
-        document.getElementById("vidaJug1").style.width = jugador1.vida + "%";
+        document.getElementById("vidaJug1").style.clipPath = `inset(0% ${100 - jugador1.vida}% 0% 0%)`;
         console.log("ataque jug2");
 }
 }
