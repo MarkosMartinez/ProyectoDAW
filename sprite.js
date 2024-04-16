@@ -29,9 +29,8 @@ class Sprite{
 
         if(this.atacando){
             ctx.fillStyle = "yellow";
-            ctx.fillRect(this.ataque.posicion.x, this.ataque.posicion.y, this.ataque.width, this.ataque.height)        
+            ctx.fillRect(this.ataque.posicion.x, this.ataque.posicion.y, this.ataque.width, this.ataque.height)  
         }
-
     }
 
     mostrarSprite(){
