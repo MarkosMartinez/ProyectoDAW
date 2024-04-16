@@ -128,29 +128,47 @@ function colisionAtaque({jugadorAtacante, jugadorAtacado}){
 }
 
 function resetearTiempo() {
-    tiempo = 3;
+    tiempo = 60;
+    tiempoRestante();
 }
 
+// Se declara fuera de la función para poder detener el tiempo cuando se reinicie el juego
+var timeout;
+var animationFrameId; 
 
 function tiempoRestante() {
 
+    timeout = setTimeout(tiempoRestante, 1000);
     if (tiempo >= 0) {
         document.getElementById("contador").innerHTML = tiempo;
-        setTimeout(tiempoRestante, 1000);
-
         tiempo--;
-    } else if (tiempo < 0){
-        alert("Tiempo agotado");
+    } else if (tiempo <= 0){
+        clearTimeout(timeout);
+        cancelAnimationFrame(animationFrameId);
+        if (jugador1.vida > jugador2.vida) {
+            alert("Tiempo agotado, gana jugador 1");
+        } else if (jugador2.vida > jugador1.vida) {
+            alert("Tiempo agotado, gana jugador 2");
+        }
+    }
+
+    if (jugador1.vida <= 0) {
+        clearTimeout(timeout);
+        //cancelAnimationFrame(animationFrameId);
+        alert("jugador 2 gana");
+    } else if (jugador2.vida <= 0) {
+        clearTimeout(timeout);
+        //cancelAnimationFrame(animationFrameId);
+        alert("Jugador 1 gana");
     }
 }
 
 resetearTiempo();
-tiempoRestante();
 
 function movimiento(){
     // sirve para hacer que el navegador redibuje el contenido continuamente al llamar a esta misma funcion
    
-    window.requestAnimationFrame(movimiento);
+    animationFrameId = window.requestAnimationFrame(movimiento);
    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
@@ -202,3 +220,4 @@ function movimiento(){
 }
 
 movimiento();
+
