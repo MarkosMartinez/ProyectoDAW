@@ -133,10 +133,11 @@ function resetearTiempo() {
 
 
 function tiempoRestante() {
-    setTimeout(tiempoRestante, 1000);
 
     if (tiempo >= 0) {
         document.getElementById("contador").innerHTML = tiempo;
+        setTimeout(tiempoRestante, 1000);
+
         tiempo--;
     } else if (tiempo < 0){
         alert("Tiempo agotado");
