@@ -149,6 +149,8 @@ function tiempoRestante() {
             alert("Tiempo agotado, gana jugador 1");
         } else if (jugador2.vida > jugador1.vida) {
             alert("Tiempo agotado, gana jugador 2");
+        } else {
+            alert("Tiempo agotado, empate")
         }
     }
 
