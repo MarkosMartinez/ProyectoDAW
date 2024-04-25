@@ -135,7 +135,9 @@ function resetearTiempo() {
 // Se declara fuera de la función para poder detener el tiempo cuando se reinicie el juego
 var timeout;
 var animationFrameId; 
+const resultado = document.getElementById("resultado");
 
+//Restar el contador, añadir condiciones de victoria y empate
 function tiempoRestante() {
 
     timeout = setTimeout(tiempoRestante, 1000);
@@ -146,22 +148,27 @@ function tiempoRestante() {
         clearTimeout(timeout);
         cancelAnimationFrame(animationFrameId);
         if (jugador1.vida > jugador2.vida) {
-            alert("Tiempo agotado, gana jugador 1");
+            // alert("Tiempo agotado, gana jugador 1");
+            resultado.innerHTML = "Tiempo agotado, ¡gana el jugador 1!";
         } else if (jugador2.vida > jugador1.vida) {
-            alert("Tiempo agotado, gana jugador 2");
+            // alert("Tiempo agotado, gana jugador 2");
+            resultado.innerHTML = "Tiempo agotado, ¡gana el jugador 2!";
         } else {
-            alert("Tiempo agotado, empate")
+           // alert("Tiempo agotado, empate")
+           resultado.innerHTML = "Tiempo agotado, ¡empate!";
         }
     }
 
     if (jugador1.vida <= 0) {
         clearTimeout(timeout);
         //cancelAnimationFrame(animationFrameId);
-        alert("jugador 2 gana");
+        // alert("jugador 2 gana");
+        resultado.innerHTML = "¡Gana el jugador 2!";
     } else if (jugador2.vida <= 0) {
         clearTimeout(timeout);
         //cancelAnimationFrame(animationFrameId);
-        alert("Jugador 1 gana");
+        // alert("Jugador 1 gana");
+        resultado.innerHTML = "¡Gana el jugador 1!";
     }
 }
 
@@ -222,4 +229,3 @@ function movimiento(){
 }
 
 movimiento();
-
